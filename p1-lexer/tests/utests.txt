@@ -1,0 +1,5 @@
+Running suite(s): Default
+85%: Checks: 21, Failures: 2, Errors: 1
+public.c:38:F:Public:A_comments:0: Assertion 'valid_0tokens("// test")' failed
+public.c:39:F:Public:A_keyword_id:0: Assertion 'valid_1token("int3", ID, "int3")' failed
+private.c:5:E:Private:A_null_string:0: (after this point) Received signal 11 (Segmentation fault)

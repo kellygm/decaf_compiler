@@ -1,0 +1,6 @@
+SYMBOL   [line 001]  (
+SYMBOL   [line 001]  )
+SYMBOL   [line 001]  +
+SYMBOL   [line 001]  *
+DECLIT   [line 001]  123
+ID       [line 001]  id
