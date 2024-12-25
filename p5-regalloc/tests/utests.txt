@@ -1,0 +1,2 @@
+Running suite(s): Default
+100%: Checks: 11, Failures: 0, Errors: 0

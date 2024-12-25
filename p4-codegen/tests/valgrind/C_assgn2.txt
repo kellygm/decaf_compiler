@@ -1,0 +1,15 @@
+==3514365== Memcheck, a memory error detector
+==3514365== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==3514365== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==3514365== Command: ../decaf inputs/C_assgn.decaf
+==3514365== 
+RETURN VALUE = 14
+==3514365== 
+==3514365== HEAP SUMMARY:
+==3514365==     in use at exit: 0 bytes in 0 blocks
+==3514365==   total heap usage: 1,966 allocs, 1,966 frees, 431,012 bytes allocated
+==3514365== 
+==3514365== All heap blocks were freed -- no leaks are possible
+==3514365== 
+==3514365== For lists of detected and suppressed errors, rerun with: -s
+==3514365== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

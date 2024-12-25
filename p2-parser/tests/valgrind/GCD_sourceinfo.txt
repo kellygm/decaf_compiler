@@ -1,0 +1,62 @@
+==2091674== Memcheck, a memory error detector
+==2091674== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==2091674== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==2091674== Command: ../decaf inputs/gcd.decaf
+==2091674== 
+Program [line 1]
+  FuncDecl name="gcd" return_type=int parameters={a:int,b:int} [line 1]
+    Block [line 2]
+      VarDecl name="min" type=int is_array=no array_length=1 [line 3]
+      Conditional [line 4]
+        Binaryop op="<" [line 4]
+          Location name="a" [line 4]
+          Location name="b" [line 4]
+        Block [line 5]
+          Assignment [line 6]
+            Location name="min" [line 6]
+            Location name="a" [line 6]
+        Block [line 8]
+          Assignment [line 9]
+            Location name="min" [line 9]
+            Location name="b" [line 9]
+      Whileloop [line 12]
+        Binaryop op=">" [line 12]
+          Location name="min" [line 12]
+          Literal type=int value=0 [line 12]
+        Block [line 13]
+          Conditional [line 14]
+            Binaryop op="&&" [line 14]
+              Binaryop op="==" [line 14]
+                Binaryop op="%" [line 14]
+                  Location name="a" [line 14]
+                  Location name="min" [line 14]
+                Literal type=int value=0 [line 14]
+              Binaryop op="==" [line 14]
+                Binaryop op="%" [line 14]
+                  Location name="b" [line 14]
+                  Location name="min" [line 14]
+                Literal type=int value=0 [line 14]
+            Block [line 15]
+              Break [line 16]
+          Assignment [line 18]
+            Location name="min" [line 18]
+            Binaryop op="-" [line 18]
+              Location name="min" [line 18]
+              Literal type=int value=1 [line 18]
+      Return [line 21]
+        Location name="min" [line 21]
+  FuncDecl name="main" return_type=int parameters={} [line 24]
+    Block [line 25]
+      Return [line 26]
+        FuncCall name="gcd" [line 26]
+          Literal type=int value=24 [line 26]
+          Literal type=int value=12 [line 26]
+==2091674== 
+==2091674== HEAP SUMMARY:
+==2091674==     in use at exit: 0 bytes in 0 blocks
+==2091674==   total heap usage: 2,107 allocs, 2,107 frees, 278,464 bytes allocated
+==2091674== 
+==2091674== All heap blocks were freed -- no leaks are possible
+==2091674== 
+==2091674== For lists of detected and suppressed errors, rerun with: -s
+==2091674== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

@@ -1,0 +1,2 @@
+def int foo(int a, bool b) {  }
+def int main() {return 0;}

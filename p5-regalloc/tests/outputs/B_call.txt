@@ -1,0 +1,33 @@
+main:
+  push BP
+  i2i SP => BP
+  addI SP, -16 => SP
+  loadI 3 => R0
+  storeAI R0 => [BP-8]
+  loadAI [BP-8] => R0
+  storeAI R0 => [BP-16]
+  call set
+  addI SP, 0 => SP
+  i2i RET => R0
+  loadAI [BP-16] => R1
+  add R1, R0 => R0
+  i2i R0 => RET
+  jump l0
+l0:
+  i2i BP => SP
+  pop BP
+  return
+set:
+  push BP
+  i2i SP => BP
+  addI SP, 0 => SP
+  loadI 1 => R0
+  loadI 2 => R1
+  add R0, R1 => R0
+  i2i R0 => RET
+  jump l1
+l1:
+  i2i BP => SP
+  pop BP
+  return
+RETURN VALUE = 6

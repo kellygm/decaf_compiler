@@ -1,0 +1,59 @@
+bool ans;
+int answers[10];
+
+def int fact(int n)
+{
+    int i;
+    int result;
+
+    i = 1;
+    result = 1;
+
+    while (i < n + 1)
+    {
+        result = result * i;
+        i = i + 1;
+    }
+
+    return result;
+}
+
+def bool is_prime(int n)
+{
+    int i;
+    i = 2;
+
+    // edge case 
+    if (n <= 1)
+    {
+        return false;
+    } 
+
+    while ((i * i) <= n)
+    {
+        // if n is divisible by i, so not prime
+        if (n % i == 0)
+        {
+            return false;
+        }
+        i = i + 1;
+    }
+
+    return true;
+}
+
+def int main() {
+    bool prime;
+    ans = false;
+    answers[0] = fact(4);
+    prime = is_prime(4);
+    if (prime == true) {
+        answers[1] = 1;
+    } else {
+        answers[1] = 0;
+    }
+    if (answers[1] != 0) {
+        return 1;
+    }
+    return 0;
+}

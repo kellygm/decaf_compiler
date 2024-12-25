@@ -1,0 +1,12 @@
+A_sourceinfo                   pass
+logical_and_operation          pass
+sum_nums                       pass
+FIB_sourceinfo                 pass
+A_ASGN_sourceinfo              pass
+GCD_sourceinfo                 pass
+No memory leak found.
+No uninitialized value found.
+========================================
+ NOTICE: THIS TESTSUITE IS INCOMPLETE.
+YOU WILL BE GRADED ON OTHER TEST CASES.
+        WRITE YOUR OWN TESTS!

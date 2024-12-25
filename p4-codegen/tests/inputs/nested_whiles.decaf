@@ -1,0 +1,15 @@
+def int main() {
+    int i;
+    i = 0;
+    while (i < 20) {
+        int j;
+        j = i * 2;
+        while (j < 5) {
+            print_int(j);
+            print_str("\n");
+            j = j + 1;
+        }
+        i = i + 1;
+    }
+    return i;
+}

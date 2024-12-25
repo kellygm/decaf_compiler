@@ -1,0 +1,7 @@
+def int main() {
+    if (true) {
+        return 2 + 1;
+    } else {
+        return 3 + 1;
+    }
+}

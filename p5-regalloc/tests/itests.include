@@ -1,0 +1,17 @@
+# list of integration tests
+#  format: run_test <TAG> <ARGS>
+#    <TAG>      used as the root for all filenames (i.e., "expected/$TAG.txt")
+#    <ARGS>     command-line arguments to test
+
+run_test    A_memcheck                  "inputs/sanity.decaf"
+run_test    D_test                      "inputs/test.decaf"
+run_test    C_2regs                     "inputs/2regs.decaf"
+run_test    C_3regs                     "inputs/3regs.decaf"
+run_test    C_one_assgn                 "inputs/assgn.decaf"
+run_test    C_mult_assgn                "inputs/mult_assgn.decaf"
+run_test    C_cond                      "inputs/cond.decaf"
+run_test    B_call                      "inputs/funccall.decaf"
+run_test    A_add                       "inputs/add.decaf"
+run_test    A_gcd                       "inputs/gcd.decaf"
+run_test    A_recursion                 "inputs/fib.decaf"
+run_test    A_p0                        "inputs/p0.decaf"

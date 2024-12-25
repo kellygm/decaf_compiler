@@ -1,0 +1,8 @@
+bool b;
+def int main() {
+    b = true;
+    if (b && (5 + 5 == 10)) {
+        return 3;
+    }
+    return 0;
+}

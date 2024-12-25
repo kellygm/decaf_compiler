@@ -1,0 +1,7 @@
+Running suite(s): Default
+ERROR: No 'type' attribute
+69%: Checks: 13, Failures: 3, Errors: 1
+public.c:30:F:Public:C_invalid_conditional:0: Assertion 'invalid_program("def int main() { if (1) { return 0; } }")' failed
+public.c:31:F:Public:B_invalid_dup_var_global:0: Assertion 'invalid_program("def int main () { " "int a; bool b; int a; return 0;" " }")' failed
+public.c:32:F:Public:B_expr_type_mismatch:0: Assertion 'invalid_program("def int main() { int i; i = true+4; return 0; }")' failed
+private.c:5:E:Private:A_null_tree:0: (after this point) Received signal 11 (Segmentation fault)

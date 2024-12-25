@@ -1,0 +1,9 @@
+def int main()
+{
+    return -5;
+}
+
+def bool foo()
+{
+    return !false;
+}

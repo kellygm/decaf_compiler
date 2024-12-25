@@ -1,0 +1,13 @@
+def int add(int x, int y)
+{
+    return x + y;
+}
+
+def int main()
+{
+    int a;
+    int b;
+    a = 3;
+    b = 2;
+    return add(a, b);
+}

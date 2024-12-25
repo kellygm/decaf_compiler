@@ -1,0 +1,14 @@
+def int fib(int n)
+{
+   if (n <= 1)
+   {
+        return n;
+   }
+   return fib(n - 1) + fib(n - 2);
+}
+
+def int main() {
+    int a;
+    a = 4;
+    return fib(4);
+}

@@ -1,0 +1,9 @@
+def void literals () {
+    int i;
+    bool b;
+    int hex;
+    i = 5;
+    b = true;
+    hex = 0x14;
+    // comment
+}

@@ -1,0 +1,17 @@
+==2557925== Memcheck, a memory error detector
+==2557925== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==2557925== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==2557925== Command: ../decaf inputs/mismatch.decaf
+==2557925== 
+Type mismatch: bool is incompatiable with int on line 4
+Type mismatch: int is incompatiable with str on line 5
+Type mismatch: int is incompatiable with bool on line 6
+==2557925== 
+==2557925== HEAP SUMMARY:
+==2557925==     in use at exit: 0 bytes in 0 blocks
+==2557925==   total heap usage: 2,077 allocs, 2,077 frees, 262,416 bytes allocated
+==2557925== 
+==2557925== All heap blocks were freed -- no leaks are possible
+==2557925== 
+==2557925== For lists of detected and suppressed errors, rerun with: -s
+==2557925== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

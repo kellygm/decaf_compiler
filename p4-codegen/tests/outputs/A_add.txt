@@ -1,0 +1,1 @@
+5RETURN VALUE = 5

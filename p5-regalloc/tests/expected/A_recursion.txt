@@ -1,0 +1,54 @@
+fib:
+  push BP
+  i2i SP => BP
+  addI SP, -8 => SP
+  loadAI [BP+16] => R0
+  loadI 1 => R1
+  cmp_LE R0, R1 => R0
+  cbr R0 => l1, l2
+l1:
+  loadAI [BP+16] => R0
+  i2i R0 => RET
+  jump l0
+l2:
+  loadAI [BP+16] => R0
+  loadI 1 => R1
+  sub R0, R1 => R0
+  push R0
+  call fib
+  addI SP, 8 => SP
+  i2i RET => R0
+  loadAI [BP+16] => R1
+  loadI 2 => R2
+  sub R1, R2 => R1
+  push R1
+  storeAI R0 => [BP-8]
+  call fib
+  addI SP, 8 => SP
+  i2i RET => R0
+  loadAI [BP-8] => R1
+  add R1, R0 => R0
+  i2i R0 => RET
+  jump l0
+l0:
+  i2i BP => SP
+  pop BP
+  return
+main:
+  push BP
+  i2i SP => BP
+  addI SP, -8 => SP
+  loadI 4 => R0
+  storeAI R0 => [BP-8]
+  loadI 4 => R0
+  push R0
+  call fib
+  addI SP, 8 => SP
+  i2i RET => R0
+  i2i R0 => RET
+  jump l3
+l3:
+  i2i BP => SP
+  pop BP
+  return
+RETURN VALUE = 3

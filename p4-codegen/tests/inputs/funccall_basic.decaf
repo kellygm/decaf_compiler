@@ -1,0 +1,9 @@
+def int main() {
+    int a;
+    a = 3;
+    return a + set();
+}
+
+def int set() {
+    return 1 + 2;
+}

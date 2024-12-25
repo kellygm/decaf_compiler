@@ -1,0 +1,47 @@
+==2923417== Memcheck, a memory error detector
+==2923417== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==2923417== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==2923417== Command: ../decaf inputs/funccall.decaf
+==2923417== 
+main:
+  push BP
+  i2i SP => BP
+  addI SP, -16 => SP
+  loadI 3 => R0
+  storeAI R0 => [BP-8]
+  loadAI [BP-8] => R0
+  storeAI R0 => [BP-16]
+  call set
+  addI SP, 0 => SP
+  i2i RET => R0
+  loadAI [BP-16] => R1
+  add R1, R0 => R0
+  i2i R0 => RET
+  jump l0
+l0:
+  i2i BP => SP
+  pop BP
+  return
+set:
+  push BP
+  i2i SP => BP
+  addI SP, 0 => SP
+  loadI 1 => R0
+  loadI 2 => R1
+  add R0, R1 => R0
+  i2i R0 => RET
+  jump l1
+l1:
+  i2i BP => SP
+  pop BP
+  return
+RETURN VALUE = 6
+==2923417== 
+==2923417== HEAP SUMMARY:
+==2923417==     in use at exit: 0 bytes in 0 blocks
+==2923417==   total heap usage: 2,119 allocs, 2,119 frees, 607,276 bytes allocated
+==2923417== 
+==2923417== All heap blocks were freed -- no leaks are possible
+==2923417== 
+==2923417== For lists of detected and suppressed errors, rerun with: -s
+==2923417== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

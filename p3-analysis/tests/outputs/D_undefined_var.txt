@@ -1,0 +1,3 @@
+Symbol 'a' undefined on line 3
+Type mismatch: ??? is incompatiable with int on line 3
+Symbol 'a' undefined on line 3

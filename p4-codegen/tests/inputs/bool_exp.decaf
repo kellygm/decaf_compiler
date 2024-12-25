@@ -1,0 +1,11 @@
+def int main() {
+    bool c; 
+    bool b;
+    b = true;
+    c = false;
+    if (b && !c) {
+        return 5;
+    } else {
+        return 0;
+    }
+}

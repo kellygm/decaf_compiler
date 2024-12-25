@@ -1,0 +1,13 @@
+digraph AST {
+3 [shape=box, label="FuncCall name='print_str'"];
+5 [shape=box, label="Literal value=0"];
+4 [shape=box, label="Return"];
+4 -> 5;
+2 [shape=box, label="Block"];
+2 -> 3;
+2 -> 4;
+1 [shape=box, label="FuncDecl name='main'"];
+1 -> 2;
+0 [shape=box, label="Program"];
+0 -> 1;
+}

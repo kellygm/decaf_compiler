@@ -1,0 +1,38 @@
+# list of integration tests
+#  format: run_test <TAG> <ARGS>
+#    <TAG>      used as the root for all filenames (i.e., "expected/$TAG.txt")
+#    <ARGS>     command-line arguments to test
+
+run_test    A_memcheck                  "inputs/sanity.decaf"
+run_test    D_expr_add                  "inputs/exp_add.decaf"
+run_test    C_expr_sub                  "inputs/C_binop.decaf"
+run_test    C_expr_mult                 "inputs/C_binop2.decaf"
+run_test    C_unop                      "inputs/unop.decaf"
+run_test    C_assgn2                    "inputs/C_assgn.decaf"
+run_test    C_assgn_global              "inputs/global_assgn.decaf"
+run_test    C_assgn                     "inputs/assgn.decaf"
+run_test    B_cond                      "inputs/conds.decaf"
+run_test    B_bool_exp                  "inputs/bool_exp.decaf"
+run_test    B_bool_exp2                 "inputs/bool_exp2.decaf"
+run_test    B_if_else                   "inputs/cond2.decaf"
+run_test    B_while_basic               "inputs/while_basic.decaf"
+run_test    B_while                     "inputs/while.decaf"
+run_test    B_break                     "inputs/break.decaf"
+run_test    B_continue                  "inputs/continue.decaf"
+run_test    B_funccall                  "inputs/funccall_basic.decaf"
+run_test    B_test2                     "inputs/test2.decaf"
+run_test    A_arr_assgn                 "inputs/arr_assgn.decaf"
+run_test    A_funccall_param            "inputs/add2.decaf"
+run_test    A_mod                       "inputs/A_modulus.decaf"
+run_test    A_mod_hard                  "inputs/A_mod_hard.decaf"
+run_test    A_nested_cond               "inputs/nested_whiles.decaf"
+run_test    A_print_int                 "inputs/print_int.decaf"
+run_test    A_print_bools               "inputs/print_bools.decaf"
+run_test    A_print_ints                "inputs/print_ints.decaf"
+run_test    A_print_strings             "inputs/print_strings.decaf"
+run_test    A_add                       "inputs/add.decaf"
+run_test    A_test_hard                 "inputs/more_test.decaf"
+run_test    A_cond_edges                "inputs/is_prime.decaf"
+run_test    A_draw                      "inputs/sort_nums.decaf"
+run_test    A_p0                        "inputs/p0.decaf"
+

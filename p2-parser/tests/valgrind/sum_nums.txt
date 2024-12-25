@@ -1,0 +1,67 @@
+==2091305== Memcheck, a memory error detector
+==2091305== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==2091305== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==2091305== Command: ../decaf inputs/sum_nums.decaf
+==2091305== 
+Program [line 1]
+  VarDecl name="nums" type=int is_array=yes array_length=3 [line 1]
+  FuncDecl name="sum_nums" return_type=int parameters={len:int} [line 2]
+    Block [line 3]
+      VarDecl name="i" type=int is_array=no array_length=1 [line 4]
+      VarDecl name="result" type=int is_array=no array_length=1 [line 5]
+      Assignment [line 6]
+        Location name="nums" [line 6]
+          Literal type=int value=0 [line 6]
+        Literal type=int value=2 [line 6]
+      Assignment [line 7]
+        Location name="nums" [line 7]
+          Literal type=int value=1 [line 7]
+        Literal type=int value=2 [line 7]
+      Assignment [line 8]
+        Location name="nums" [line 8]
+          Literal type=int value=2 [line 8]
+        Literal type=int value=2 [line 8]
+      Assignment [line 9]
+        Location name="i" [line 9]
+        Literal type=int value=0 [line 9]
+      Assignment [line 10]
+        Location name="result" [line 10]
+        Literal type=int value=0 [line 10]
+      Conditional [line 11]
+        Binaryop op="==" [line 11]
+          Location name="len" [line 11]
+          Literal type=int value=0 [line 11]
+        Block [line 12]
+          Return [line 13]
+            Literal type=int value=0 [line 13]
+      Whileloop [line 16]
+        Binaryop op="<" [line 16]
+          Location name="i" [line 16]
+          Location name="len" [line 16]
+        Block [line 17]
+          Assignment [line 18]
+            Location name="result" [line 18]
+            Binaryop op="+" [line 18]
+              Location name="result" [line 18]
+              Location name="nums" [line 18]
+                Location name="i" [line 18]
+          Assignment [line 19]
+            Location name="i" [line 19]
+            Binaryop op="+" [line 19]
+              Location name="i" [line 19]
+              Literal type=int value=1 [line 19]
+      Return [line 22]
+        Location name="result" [line 22]
+  FuncDecl name="main" return_type=int parameters={} [line 26]
+    Block [line 27]
+      Return [line 28]
+        Literal type=int value=0 [line 28]
+==2091305== 
+==2091305== HEAP SUMMARY:
+==2091305==     in use at exit: 0 bytes in 0 blocks
+==2091305==   total heap usage: 2,150 allocs, 2,150 frees, 274,076 bytes allocated
+==2091305== 
+==2091305== All heap blocks were freed -- no leaks are possible
+==2091305== 
+==2091305== For lists of detected and suppressed errors, rerun with: -s
+==2091305== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

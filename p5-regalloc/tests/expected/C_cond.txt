@@ -1,0 +1,25 @@
+main:
+  push BP
+  i2i SP => BP
+  addI SP, 0 => SP
+  loadI 1 => R0
+  cbr R0 => l1, l2
+l1:
+  loadI 2 => R0
+  loadI 1 => R1
+  add R0, R1 => R0
+  i2i R0 => RET
+  jump l0
+  jump l3
+l2:
+  loadI 3 => R0
+  loadI 1 => R1
+  add R0, R1 => R0
+  i2i R0 => RET
+  jump l0
+l3:
+l0:
+  i2i BP => SP
+  pop BP
+  return
+RETURN VALUE = 3

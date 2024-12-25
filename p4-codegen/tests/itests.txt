@@ -1,0 +1,38 @@
+A_memcheck                     pass
+D_expr_add                     pass
+C_expr_sub                     pass
+C_expr_mult                    pass
+C_unop                         pass
+C_assgn2                       pass
+C_assgn_global                 pass
+C_assgn                        pass
+B_cond                         pass
+B_bool_exp                     pass
+B_bool_exp2                    pass
+B_if_else                      pass
+B_while_basic                  pass
+B_while                        pass
+B_break                        pass
+B_continue                     pass
+B_funccall                     pass
+B_test2                        pass
+A_arr_assgn                    pass
+A_funccall_param               pass
+A_mod                          pass
+A_mod_hard                     pass
+A_nested_cond                  pass
+A_print_int                    pass
+A_print_bools                  pass
+A_print_ints                   pass
+A_print_strings                pass
+A_add                          pass
+A_test_hard                    pass
+A_cond_edges                   pass
+A_draw                         pass
+A_p0                           pass
+No memory leak found.
+No uninitialized value found.
+========================================
+ NOTICE: THIS TESTSUITE IS INCOMPLETE.
+YOU WILL BE GRADED ON OTHER TEST CASES.
+        WRITE YOUR OWN TESTS!

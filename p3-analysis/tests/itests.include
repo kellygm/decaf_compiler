@@ -1,0 +1,13 @@
+# list of integration tests
+#  format: run_test <TAG> <ARGS>
+#    <TAG>      used as the root for all filenames (i.e., "expected/$TAG.txt")
+#    <ARGS>     command-line arguments to test
+
+run_test    D_undefined_var             "inputs/undefined_var.decaf"
+run_test    B_add                       "inputs/add.decaf"
+run_test    good_source                 "inputs/good.decaf"
+run_test    invalid_main_1              "inputs/invalid_main_c.decaf"
+run_test    invalid_main_2              "inputs/invalid_main_b.decaf"
+run_test    invalid_vars                "inputs/invalid_vars.decaf"
+run_test    valid_locations             "inputs/locations.decaf"
+run_test    mismatch_types              "inputs/mismatch.decaf"

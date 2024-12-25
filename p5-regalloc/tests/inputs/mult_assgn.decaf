@@ -1,0 +1,7 @@
+def int main() {
+    int a;
+    a = 2 + 3 * 4;
+    a = a - 4 / 2;
+    a = a * 3  + 4;
+    return a;
+}

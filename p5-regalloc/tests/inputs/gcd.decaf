@@ -1,0 +1,30 @@
+def int gcd(int a, int b)
+{
+    int min;
+
+    if (a < b) 
+    {
+        min = a;
+    } else 
+    {
+      min = b;
+    }
+
+    while (min > 0) {
+        if ((a % min == 0) && (b % min == 0))
+        {
+            break;
+        }
+        min = min - 1;
+    }
+
+    return min;
+}
+
+def int main() {
+    int a;
+    int b;
+    a = 10;
+    b = 3;
+    return gcd(a, b);
+}

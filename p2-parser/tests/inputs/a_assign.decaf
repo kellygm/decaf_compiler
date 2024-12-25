@@ -1,0 +1,6 @@
+int a[5];
+def int main( )
+{
+    a[1] = 7; 
+    return a[1];
+}

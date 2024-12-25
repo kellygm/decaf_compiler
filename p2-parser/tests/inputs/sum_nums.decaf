@@ -1,0 +1,29 @@
+int nums[3];
+def int sum_nums(int len)
+{
+    int i;
+    int result;
+    nums[0] = 2;
+    nums[1] = 2;
+    nums[2] = 2;
+    i = 0;
+    result = 0;
+    if (len == 0)
+    {
+        return 0;
+    }
+
+    while (i < len)
+    {
+        result = result + nums[i];
+        i = i + 1;
+    }
+
+    return result;
+}
+
+
+def int main()
+{
+    return 0;
+}

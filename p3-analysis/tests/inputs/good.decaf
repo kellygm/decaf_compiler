@@ -1,0 +1,9 @@
+int i;
+bool b;
+def int main()
+{
+    int j;
+    bool c;
+    j = 5;
+    return j;
+}

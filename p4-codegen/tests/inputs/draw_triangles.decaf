@@ -1,0 +1,41 @@
+def void draw_triangle(int base)
+{
+    int num_rows;
+    int i;
+
+    i = 1;
+    
+    while (i <= base)
+    {
+        int spaces;
+        int hashes;
+        int s;
+        int h;
+
+        spaces = (base - i) / 2; // num of spaces to add to center each line of triangle
+        hashes = i; 
+        s = 0;
+        h = 0;
+
+        // print the spaces
+        while (s < spaces)
+        {
+            print_str(" ");
+            s = s + 1;
+        }
+
+        // print the hashes
+        while (h < hashes)
+        {
+            print_str("#");
+            h = h + 1;
+        }
+        print_str("\n");
+        i = i + 2; 
+    }
+}
+
+def int main() {
+    draw_triangle(10);
+    return 0;
+}

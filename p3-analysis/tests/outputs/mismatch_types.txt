@@ -1,0 +1,3 @@
+Type mismatch: bool is incompatiable with int on line 4
+Type mismatch: int is incompatiable with str on line 5
+Type mismatch: int is incompatiable with bool on line 6

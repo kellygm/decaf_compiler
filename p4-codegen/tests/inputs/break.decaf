@@ -1,0 +1,19 @@
+def int main() {
+    int i;
+    bool b;
+    int c;
+    i = 0;
+    c = 2;
+    b = false;
+    while (i < 10) {
+        if (i + c == 6) {
+            b = true;
+        }
+        if (b) {
+            break;
+        }
+        i = i + 1;
+        
+    }
+    return i;
+}

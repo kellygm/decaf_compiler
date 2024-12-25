@@ -1,0 +1,17 @@
+--- outputs/invalid_main_2.txt	2024-10-22 19:25:59.090209150 -0400
++++ expected/invalid_main_2.txt	2024-10-22 13:42:06.839629730 -0400
+@@ -1,13 +1 @@
+-Program [line 1]
+-SYM TABLE:
+- print_int : (int) -> void
+- print_bool : (bool) -> void
+- print_str : (str) -> void
+- main : () -> bool
+-
+-  FuncDecl name="main" return_type=bool parameters={} [line 1]
+-  SYM TABLE:
+-
+-    Block [line 2]
+-    SYM TABLE:
+-
++'main' must return an integer

@@ -1,0 +1,11 @@
+def int main() {
+    int i;
+    int result;
+    result = 1;
+    i = 0;
+    while (i < 10) {
+        result = result + (i * 2);
+        i = i + 1;
+    }
+    return result;
+}

@@ -1,0 +1,13 @@
+def int foo (int b, bool a, int c)
+{
+    int c;
+    a = 5;
+    b = "true";
+    c = false;
+    return 0;
+}
+
+def int main()
+{
+    return 0;
+}

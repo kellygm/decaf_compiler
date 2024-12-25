@@ -1,0 +1,18 @@
+A_memcheck                     pass
+D_test                         pass
+C_2regs                        pass
+C_3regs                        pass
+C_one_assgn                    pass
+C_mult_assgn                   pass
+C_cond                         pass
+B_call                         pass
+A_add                          pass
+A_gcd                          pass
+A_recursion                    pass
+A_p0                           FAIL (see outputs/A_p0.diff for details)
+No memory leak found.
+No uninitialized value found.
+========================================
+ NOTICE: THIS TESTSUITE IS INCOMPLETE.
+YOU WILL BE GRADED ON OTHER TEST CASES.
+        WRITE YOUR OWN TESTS!

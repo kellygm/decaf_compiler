@@ -1,0 +1,40 @@
+int nums[10];
+def void sort_nums(int len)
+{
+    // using bubble sort variation
+    int i;
+    int j;
+    int temp;
+    i = 0;
+
+    while (i < len)
+    {
+        j = 0;
+        while (j < (len - 1) - i)
+        {
+            if (nums[j] > nums[j + 1])
+            {
+                // swap values 
+                temp = nums[j];
+                nums[j] = nums[j + 1];
+                nums[j + 1] = temp;
+            } 
+
+            j = j + 1;
+        }
+
+        i = i + 1;
+
+    }
+
+}
+
+def int main() {
+   int i;
+   while (i < 10) {
+        nums[i] = i;
+        i = i + 1;
+   }
+   sort_nums(10);
+   return 5;
+}

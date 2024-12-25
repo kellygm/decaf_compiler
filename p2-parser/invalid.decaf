@@ -1,0 +1,10 @@
+def bool hello
+{
+    return true;
+}
+
+def int main()
+{
+    print_str;
+    return 0;
+}

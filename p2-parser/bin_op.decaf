@@ -1,0 +1,13 @@
+def void bin_op ()
+{
+    bool a;
+    bool b;
+    a = true;
+    b = false;
+    c = true && false;
+    if (c == false)
+    {
+        return "yay";
+    }
+    return c;
+}

@@ -1,0 +1,35 @@
+digraph AST {
+5 [shape=box, label="Location name='x'\ntype: int"];
+6 [shape=box, label="Location name='y'\ntype: int"];
+4 [shape=box, label="BinaryOp op='+'\ntype: int"];
+4 -> 5;
+4 -> 6;
+3 [shape=box, label="Return"];
+3 -> 4;
+2 [shape=box, label="Block\nsymbolTable: (empty)"];
+2 -> 3;
+1 [shape=box, label="FuncDecl name='add'\nsymbolTable: \n  x : int\n  y : int"];
+1 -> 2;
+9 [shape=box, label="VarDecl name='a'\ntype: int"];
+11 [shape=box, label="Location name='a'\ntype: int"];
+12 [shape=box, label="Literal value=3\ntype: int"];
+10 [shape=box, label="Assignment"];
+10 -> 11;
+10 -> 12;
+15 [shape=box, label="Location name='a'\ntype: int"];
+16 [shape=box, label="Literal value=2\ntype: int"];
+14 [shape=box, label="FuncCall name='add'\ntype: int"];
+14 -> 15;
+14 -> 16;
+13 [shape=box, label="Return"];
+13 -> 14;
+8 [shape=box, label="Block\nsymbolTable: \n  a : int"];
+8 -> 9;
+8 -> 10;
+8 -> 13;
+7 [shape=box, label="FuncDecl name='main'\nsymbolTable: (empty)"];
+7 -> 8;
+0 [shape=box, label="Program\ntype: int\nsymbolTable: \n  print_int : (int) -> void\n  print_bool : (bool) -> void\n  print_str : (str) -> void\n  add : (int, int) -> int\n  main : () -> int"];
+0 -> 1;
+0 -> 7;
+}

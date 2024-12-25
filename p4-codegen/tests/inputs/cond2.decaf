@@ -1,0 +1,9 @@
+def int main() {
+    int r;
+    if (true) {
+        r = 2;
+    } else {
+        r = 3;
+    }
+    return r;
+}

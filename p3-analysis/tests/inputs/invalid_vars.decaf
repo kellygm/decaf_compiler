@@ -1,0 +1,9 @@
+void i;
+bool b;
+int arr[0];
+int main;
+def int main()
+{
+    int b;
+    b = 2;
+}

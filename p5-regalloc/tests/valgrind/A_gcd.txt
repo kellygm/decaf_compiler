@@ -1,0 +1,90 @@
+==2923463== Memcheck, a memory error detector
+==2923463== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==2923463== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==2923463== Command: ../decaf inputs/gcd.decaf
+==2923463== 
+gcd:
+  push BP
+  i2i SP => BP
+  addI SP, -8 => SP
+  loadAI [BP+16] => R0
+  loadAI [BP+24] => R1
+  cmp_LT R0, R1 => R0
+  cbr R0 => l1, l2
+l1:
+  loadAI [BP+16] => R0
+  storeAI R0 => [BP-8]
+  jump l3
+l2:
+  loadAI [BP+24] => R0
+  storeAI R0 => [BP-8]
+l3:
+l4:
+  loadAI [BP-8] => R0
+  loadI 0 => R1
+  cmp_GT R0, R1 => R0
+  cbr R0 => l5, l6
+l5:
+  loadAI [BP+16] => R0
+  loadAI [BP-8] => R1
+  div R0, R1 => R2
+  mult R1, R2 => R1
+  sub R0, R1 => R0
+  loadI 0 => R1
+  cmp_EQ R0, R1 => R0
+  loadAI [BP+24] => R1
+  loadAI [BP-8] => R2
+  div R1, R2 => R3
+  mult R2, R3 => R2
+  sub R1, R2 => R1
+  loadI 0 => R2
+  cmp_EQ R1, R2 => R1
+  and R0, R1 => R0
+  cbr R0 => l7, l8
+l7:
+  jump l6
+l8:
+  loadAI [BP-8] => R0
+  loadI 1 => R1
+  sub R0, R1 => R0
+  storeAI R0 => [BP-8]
+  jump l4
+l6:
+  loadAI [BP-8] => R0
+  i2i R0 => RET
+  jump l0
+l0:
+  i2i BP => SP
+  pop BP
+  return
+main:
+  push BP
+  i2i SP => BP
+  addI SP, -16 => SP
+  loadI 10 => R0
+  storeAI R0 => [BP-8]
+  loadI 3 => R0
+  storeAI R0 => [BP-16]
+  loadAI [BP-8] => R0
+  loadAI [BP-16] => R1
+  push R1
+  push R0
+  call gcd
+  addI SP, 16 => SP
+  i2i RET => R0
+  i2i R0 => RET
+  jump l9
+l9:
+  i2i BP => SP
+  pop BP
+  return
+RETURN VALUE = 1
+==2923463== 
+==2923463== HEAP SUMMARY:
+==2923463==     in use at exit: 0 bytes in 0 blocks
+==2923463==   total heap usage: 2,885 allocs, 2,885 frees, 1,088,796 bytes allocated
+==2923463== 
+==2923463== All heap blocks were freed -- no leaks are possible
+==2923463== 
+==2923463== For lists of detected and suppressed errors, rerun with: -s
+==2923463== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

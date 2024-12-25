@@ -1,0 +1,172 @@
+// CS 432 PROJECT 0: DECAF PROGRAMMING
+// Gillian Kelly
+// I did not use any AI-assist tools while creating this solution
+
+def int fact(int n)
+{
+    int i;
+    int result;
+
+    i = 1;
+    result = 1;
+
+    while (i < n + 1)
+    {
+        result = result * i;
+        i = i + 1;
+    }
+
+    return result;
+}
+
+def int fib(int n)
+{
+   if (n <= 1)
+   {
+        return n;
+   }
+   return fib(n - 1) + fib(n - 2);
+}
+
+def bool is_prime(int n)
+{
+    int i;
+    i = 2;
+
+    // edge case 
+    if (n <= 1)
+    {
+        return false;
+    } 
+
+    while ((i * i) <= n)
+    {
+        // if n is divisible by i, so not prime
+        if (n % i == 0)
+        {
+            return false;
+        }
+        i = i + 1;
+    }
+
+    return true;
+}
+
+def int gcd(int a, int b)
+{
+    int min;
+
+    if (a < b) 
+    {
+        min = a;
+    } else 
+    {
+      min = b;
+    }
+
+    while (min > 0) {
+        if ((a % min == 0) && (b % min == 0))
+        {
+            break;
+        }
+        min = min - 1;
+    }
+
+    return min;
+}
+
+int nums[100];
+
+def int sum_nums(int len)
+{
+    int i;
+    int result;
+    i = 0;
+    result = 0;
+
+    // special case
+    if (len == 0)
+    {
+        return 0;
+    }
+
+    while (i < len)
+    {
+        result = result + nums[i];
+        i = i + 1; // advance 
+    }
+
+    return result;
+}
+
+def void sort_nums(int len)
+{
+    // using bubble sort variation
+    int i;
+    int j;
+    int temp;
+    i = 0;
+
+    while (i < len)
+    {
+        j = 0;
+        while (j < (len - 1) - i)
+        {
+            if (nums[j] > nums[j + 1])
+            {
+                // swap values 
+                temp = nums[j];
+                nums[j] = nums[j + 1];
+                nums[j + 1] = temp;
+            } 
+
+            j = j + 1;
+        }
+
+        i = i + 1;
+
+    }
+
+}
+
+def void draw_triangle(int base)
+{
+    int num_rows;
+    int i;
+
+    i = 1;
+    
+    while (i <= base)
+    {
+        int spaces;
+        int hashes;
+        int s;
+        int h;
+
+        spaces = (base - i) / 2; // num of spaces to add to center each line of triangle
+        hashes = i; 
+        s = 0;
+        h = 0;
+
+        // print the spaces
+        while (s < spaces)
+        {
+            print_str(" ");
+            s = s + 1;
+        }
+
+        // print the hashes
+        while (h < hashes)
+        {
+            print_str("#");
+            h = h + 1;
+        }
+        print_str("\n");
+        i = i + 2; 
+    }
+}
+
+def int main()
+{
+    return 0;
+}
