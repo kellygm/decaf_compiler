@@ -6,6 +6,8 @@
 
 #include "p2-parser.h"
 
+ASTNode *parse_program(TokenQueue *input);
+
 ASTNode *parse_block (TokenQueue *input);
 ASTNode *parse_return (TokenQueue *input);
 ASTNode *parse_continue (TokenQueue *input);
@@ -32,13 +34,11 @@ ASTNode *parse_func_call (TokenQueue *input);
  * @param input Token queue to examine
  * @returns Source line
  */
-int
-get_next_token_line (TokenQueue *input)
+int get_next_token_line (TokenQueue *input)
 {
-  if (TokenQueue_is_empty (input))
-    {
-      Error_throw_printf ("Unexpected end of input\n");
-    }
+  if (TokenQueue_is_empty (input)) {
+    Error_throw_printf ("Unexpected end of input\n");
+  }
   return TokenQueue_peek (input)->line;
 }
 
@@ -52,20 +52,15 @@ get_next_token_line (TokenQueue *input)
  * @param type Expected type of next token
  * @param text Expected text of next token
  */
-void
-match_and_discard_next_token (TokenQueue *input, TokenType type,
-                              const char *text)
+void match_and_discard_next_token (TokenQueue *input, TokenType type, const char *text)
 {
-  if (TokenQueue_is_empty (input))
-    {
-      Error_throw_printf ("Unexpected end of input (expected \'%s\')\n", text);
-    }
+  if (TokenQueue_is_empty (input)) {
+    Error_throw_printf ("Unexpected end of input (expected \'%s\')\n", text);
+  }
   Token *token = TokenQueue_remove (input);
-  if (token->type != type || !token_str_eq (token->text, text))
-    {
-      Error_throw_printf ("Expected \'%s\' but found '%s' on line %d\n", text,
-                          token->text, get_next_token_line (input));
-    }
+  if (token->type != type || !token_str_eq (token->text, text)) {
+    Error_throw_printf ("Expected \'%s\' but found '%s' on line %d\n", text, token->text, get_next_token_line (input));
+  }
   Token_free (token);
 }
 
@@ -77,13 +72,11 @@ match_and_discard_next_token (TokenQueue *input, TokenType type,
  * @param input Token queue to modify
  */
 
-void
-discard_next_token (TokenQueue *input)
+void discard_next_token (TokenQueue *input)
 {
-  if (TokenQueue_is_empty (input))
-    {
-      Error_throw_printf ("Unexpected end of input\n");
-    }
+  if (TokenQueue_is_empty (input)) {
+    Error_throw_printf ("Unexpected end of input\n");
+  }
   Token_free (TokenQueue_remove (input));
 }
 
@@ -95,13 +88,11 @@ discard_next_token (TokenQueue *input)
  * @returns True if the next token is of the expected type, false if not
  */
 
-bool
-check_next_token_type (TokenQueue *input, TokenType type)
+bool check_next_token_type (TokenQueue *input, TokenType type)
 {
-  if (TokenQueue_is_empty (input))
-    {
-      return false;
-    }
+  if (TokenQueue_is_empty (input)) {
+    return false;
+  }
   Token *token = TokenQueue_peek (input);
   return (token->type == type);
 }
@@ -115,14 +106,11 @@ check_next_token_type (TokenQueue *input, TokenType type)
  * @returns True if the next token is of the expected type and text, false if
  * not
  */
-
-bool
-check_next_token (TokenQueue *input, TokenType type, const char *text)
+bool check_next_token (TokenQueue *input, TokenType type, const char *text)
 {
-  if (TokenQueue_is_empty (input))
-    {
-      return false;
-    }
+  if (TokenQueue_is_empty (input)){
+    return false;
+  }
   Token *token = TokenQueue_peek (input);
   return (token->type == type) && (token_str_eq (token->text, text));
 }
@@ -133,39 +121,29 @@ check_next_token (TokenQueue *input, TokenType type, const char *text)
  * @param input Token queue to modify
  * @returns Parsed type (it is also removed from the queue)
  */
-DecafType
-parse_type (TokenQueue *input)
+DecafType parse_type (TokenQueue *input)
 {
-  if (TokenQueue_is_empty (input))
-    {
-      Error_throw_printf ("Unexpected end of input (expected type)\n");
-    }
+  if (TokenQueue_is_empty (input)) {
+    Error_throw_printf ("Unexpected end of input (expected type)\n");
+  }
   Token *token = TokenQueue_remove (input);
-  if (token->type != KEY)
-    {
-      Error_throw_printf ("Invalid type '%s' on line %d\n", token->text,
-                          get_next_token_line (input));
-      Token_free (token);
-    }
-
+  if (token->type != KEY) {
+    Error_throw_printf ("Invalid type '%s' on line %d\n", token->text, get_next_token_line (input));
+  }
   DecafType t = VOID;
-  if (token_str_eq ("int", token->text))
-    {
-      t = INT;
-    }
-  else if (token_str_eq ("bool", token->text))
-    {
-      t = BOOL;
-    }
-  else if (token_str_eq ("void", token->text))
-    {
-      t = VOID;
-    }
-  else
-    {
-      Error_throw_printf ("Invalid type '%s' on line %d\n", token->text,
-                          get_next_token_line (input));
-    }
+  if (token_str_eq ("int", token->text)) {
+    t = INT;
+  }
+  else if (token_str_eq ("bool", token->text)) {
+    t = BOOL;
+  }
+  else if (token_str_eq ("void", token->text)) {
+    t = VOID;
+  }
+  else {
+    Error_throw_printf ("Invalid type '%s' on line %d\n", token->text, get_next_token_line (input));
+  }
+
   Token_free (token);
   return t;
 }
@@ -177,21 +155,18 @@ parse_type (TokenQueue *input)
  * @param buffer String buffer for parsed identifier (should be at least
  * @c MAX_TOKEN_LEN characters long)
  */
-
-void
-parse_id (TokenQueue *input, char *buffer)
+void parse_id (TokenQueue *input, char *buffer)
 {
-  if (TokenQueue_is_empty (input))
-    {
-      Error_throw_printf ("Unexpected end of input (expected identifier) on line %d\n", get_next_token_line(input));
-    }
+  if (TokenQueue_is_empty (input)) {
+    Error_throw_printf ("Unexpected end of input (expected identifier) on line %d\n", get_next_token_line(input));
+  }
+
   Token *token = TokenQueue_remove (input);
-  if (token->type != ID)
-    {
-      Token_free (token);
-      Error_throw_printf ("Invalid ID '%s' on line %d\n", token->text,
-                          get_next_token_line (input));
-    }
+  
+  if (token->type != ID) {
+    Error_throw_printf ("Invalid ID '%s' on line %d\n", token->text, get_next_token_line (input));
+  }
+
   snprintf (buffer, MAX_ID_LEN, "%s", token->text);
   Token_free (token);
 }
@@ -199,69 +174,60 @@ parse_id (TokenQueue *input, char *buffer)
 /**
  * @brief Parse and return a LiteralNode for an Assignment.
  */
-ASTNode *
-parse_literal (TokenQueue *input)
+ASTNode* parse_literal (TokenQueue *input)
 {
   int source_line = get_next_token_line (input);
 
   // check for a decimal literal
-  if (check_next_token_type (input, DECLIT))
-    {
-      Token *token = TokenQueue_remove (input);
-      int value = strtol (token->text, NULL, 10); // convert string to integer
-      Token_free (token);
-      return LiteralNode_new_int (value, source_line);
-    }
+  if (check_next_token_type (input, DECLIT)) {
+    Token *token = TokenQueue_remove (input);
+    int value = strtol (token->text, NULL, 10); // convert string to integer
+    Token_free (token);
+    return LiteralNode_new_int (value, source_line);
+  }
 
   // check for a hexadecimal literal
-  else if (check_next_token_type (input, HEXLIT))
-    {
-      Token *token = TokenQueue_remove (input);
-      // convert hex string to integer
-      int value = strtol (token->text, NULL, 16);
-      Token_free (token);
-      return LiteralNode_new_int (value, source_line);
-    }
+  else if (check_next_token_type (input, HEXLIT)) {
+    Token *token = TokenQueue_remove (input);
+    // convert hex string to integer
+    int value = strtol (token->text, NULL, 16);
+    Token_free (token);
+    return LiteralNode_new_int (value, source_line);
+  }
 
   // check for boolean literal
-  else if (check_next_token (input, KEY, "true")
-           || check_next_token (input, KEY, "false"))
-    {
-      Token *token = TokenQueue_remove (input);
-      bool value = token_str_eq (token->text, "true") ? true : false;
-      Token_free (token);
-      return LiteralNode_new_bool (value, source_line);
-    }
+  else if (check_next_token (input, KEY, "true") || check_next_token (input, KEY, "false")) {
+    Token *token = TokenQueue_remove (input);
+    bool value = token_str_eq (token->text, "true") ? true : false;
+    Token_free (token);
+    return LiteralNode_new_bool (value, source_line);
+  }
 
   // check for a string literal
   // TODO: make sure STRING isn't true or false
-  else if (check_next_token_type (input, STRLIT))
-    {
-      Token *token = TokenQueue_remove (input);
-      // remove leading and trailing quotes from string literal
-      char buffer[MAX_ID_LEN];
-      snprintf (buffer, MAX_ID_LEN, "%s", token->text);
-      Token_free (token);
-      // remove the first and last characters which are quotes
-      if (buffer[0] == '"' && buffer[strlen (buffer) - 1] == '"')
-        {
-          buffer[strlen (buffer) - 1] = '\0'; // remove last quote
-          return LiteralNode_new_string(buffer + 1, source_line); // skip first quote
-        }
-      else
-        {
-          Error_throw_printf ("invalid string literal format on line %d\n", source_line);
-        }
+  else if (check_next_token_type (input, STRLIT)) {
+    Token *token = TokenQueue_remove (input);
+    // remove leading and trailing quotes from string literal
+    char buffer[MAX_ID_LEN];
+    snprintf (buffer, MAX_ID_LEN, "%s", token->text);
+    Token_free (token);
+    // remove the first and last characters which are quotes
+    if (buffer[0] == '"' && buffer[strlen (buffer) - 1] == '"') {
+      buffer[strlen (buffer) - 1] = '\0'; // remove last quote
+      return LiteralNode_new_string(buffer + 1, source_line); // skip first quote
+    }
+    else{
+      Error_throw_printf ("invalid string literal format on line %d\n", source_line);
+    }
+    Token_free (token);
+  }
 
-      Token_free (token);
-    }
-  else
-    {
-      Token *t = TokenQueue_remove (input);
-      Error_throw_printf ("expected literal but found '%s' else on line %d\n",
-                          t->text, source_line);
-      Token_free (t);
-    }
+  else {
+    Token *t = TokenQueue_remove (input);
+    Error_throw_printf ("expected literal but found '%s' else on line %d\n", t->text, source_line);
+    Token_free (t);
+  }
+  
   return NULL;
 }
 
@@ -269,8 +235,7 @@ parse_literal (TokenQueue *input)
  * @brief Parse and return a LocationNode for an Assignment
  * @todo support for array assignments
  */
-ASTNode *
-parse_loc (TokenQueue *input)
+ASTNode* parse_loc (TokenQueue *input)
 {
   if (TokenQueue_is_empty (input))
     {
@@ -299,8 +264,7 @@ parse_loc (TokenQueue *input)
 /**
  * @brief parse and return BaseExpressions
  */
-ASTNode *
-parse_base_expr (TokenQueue *input)
+ASTNode* parse_base_expr (TokenQueue *input)
 {
   // parse Literals
   ASTNode *node;
@@ -335,8 +299,7 @@ parse_base_expr (TokenQueue *input)
  * string to BinaryOpType. Will return 
  * "NULL" if a match was not found
  */
-BinaryOpType
-get_binop (TokenQueue *input)
+BinaryOpType get_binop (TokenQueue *input)
 {
   BinaryOpType operator= (BinaryOpType) NULL;
   if (check_next_token (input, SYM, "||"))
@@ -406,8 +369,7 @@ get_binop (TokenQueue *input)
  * @param left The left-hand side of the binary expression.
  * @returns Parsed AST node for the binary expression.
  */
-ASTNode *
-parse_bin_expr (TokenQueue *input, ASTNode *left)
+ASTNode* parse_bin_expr (TokenQueue *input, ASTNode *left)
 {
   int source_line = get_next_token_line (input);
 
@@ -432,8 +394,7 @@ parse_bin_expr (TokenQueue *input, ASTNode *left)
 /**
  * @brief Parse and return a VarDecl
  */
-ASTNode *
-parse_vardecl (TokenQueue *input)
+ASTNode* parse_vardecl (TokenQueue *input)
 {
   int source_line = get_next_token_line (input);
   if (TokenQueue_is_empty (input))
@@ -467,8 +428,7 @@ parse_vardecl (TokenQueue *input)
  * @brief parse and return a unary expression node.
  *        supports unary operators such as '-' and '!'
  */
-ASTNode *
-parse_unary_expr (TokenQueue *input)
+ASTNode* parse_unary_expr (TokenQueue *input)
 {
   int source_line = get_next_token_line (input);
 
@@ -495,15 +455,12 @@ parse_unary_expr (TokenQueue *input)
 /**
  * @brief parse and return a FunctionCall
  */
-ASTNode *
-parse_func_call (TokenQueue *input)
+ASTNode* parse_func_call (TokenQueue *input)
 {
   int source_line = get_next_token_line (input);
   if (TokenQueue_is_empty (input))
     {
-      Error_throw_printf (
-          "Unexpected end of input (expected funcCall) on line %d",
-          source_line);
+      Error_throw_printf ( "Unexpected end of input (expected funcCall) on line %d", source_line);
     }
 
   char name[MAX_ID_LEN];
@@ -544,8 +501,7 @@ parse_func_call (TokenQueue *input)
  * @param input Token queue to modify
  * @returns Parsed AST node for the expression.
  */
-ASTNode *
-parse_expression (TokenQueue *input)
+ASTNode* parse_expression (TokenQueue *input)
 {
   if (TokenQueue_is_empty (input))
     {
@@ -556,20 +512,16 @@ parse_expression (TokenQueue *input)
   ASTNode *left = NULL;
 
   // Check for literals first
-  if (check_next_token (input, KEY, "false")
-      || check_next_token (input, KEY, "true"))
+  if (check_next_token (input, KEY, "false") || check_next_token (input, KEY, "true"))
     {
       left = parse_literal (input);
     }
-  else if (check_next_token_type (input, DECLIT)
-           || check_next_token_type (input, HEXLIT)
-           || check_next_token_type (input, STRLIT))
+  else if (check_next_token_type (input, DECLIT) || check_next_token_type (input, HEXLIT) || check_next_token_type (input, STRLIT))
     {
       left = parse_literal (input);
     }
   // Check for unary operations (e.g., -5, !true)
-  else if (check_next_token (input, SYM, "-")
-           || check_next_token (input, SYM, "!"))
+  else if (check_next_token (input, SYM, "-") || check_next_token (input, SYM, "!"))
     {
       left = parse_unary_expr (input); // Parse and return unary expression
     }
@@ -584,13 +536,11 @@ parse_expression (TokenQueue *input)
     }
 
   return parse_bin_expr (input, left);
-  ;
 }
 /**
  * @brief Parse and return an AssignmentNode
  */
-ASTNode *
-parse_assignment (TokenQueue *input)
+ASTNode* parse_assignment (TokenQueue *input)
 {
   if (TokenQueue_is_empty (input))
     {
@@ -616,8 +566,7 @@ parse_assignment (TokenQueue *input)
 /**
  * @brief parse and return a ReturnNode
  */
-ASTNode *
-parse_return (TokenQueue *input)
+ASTNode* parse_return (TokenQueue *input)
 {
   int source_line = get_next_token_line (input);
   match_and_discard_next_token (input, KEY, "return");
@@ -636,8 +585,7 @@ parse_return (TokenQueue *input)
 /**
  * @brief parse and return a BreakNode
  */
-ASTNode *
-parse_break (TokenQueue *input)
+ASTNode* parse_break (TokenQueue *input)
 {
   int source_line = get_next_token_line (input);
   match_and_discard_next_token (input, KEY, "break");
@@ -652,8 +600,7 @@ parse_break (TokenQueue *input)
 /**
  * @brief parse and return ContinueNode
  */
-ASTNode *
-parse_continue (TokenQueue *input)
+ASTNode* parse_continue (TokenQueue *input)
 {
   int source_line = get_next_token_line (input);
   match_and_discard_next_token (input, KEY, "continue");
@@ -668,8 +615,7 @@ parse_continue (TokenQueue *input)
 /**
  * @brief Parse and return a ParameterList [FAILING B TESTS!]
  */
-ParameterList *
-parse_parameter_list (TokenQueue *input)
+ParameterList* parse_parameter_list (TokenQueue *input)
 {
   ParameterList *param_list = ParameterList_new ();
   // immediately return for empty list for no params
@@ -699,8 +645,7 @@ parse_parameter_list (TokenQueue *input)
   return param_list;
 }
 
-ASTNode *
-parse_while (TokenQueue *input)
+ASTNode* parse_while (TokenQueue *input)
 {
   int source_line = get_next_token_line (input);
   ASTNode *condition;
@@ -714,15 +659,12 @@ parse_while (TokenQueue *input)
   return WhileLoopNode_new (condition, body, source_line);
 }
 
-ASTNode *
-parse_conditional (TokenQueue *input)
+ASTNode* parse_conditional (TokenQueue *input)
 {
   int source_line = get_next_token_line (input);
   if (TokenQueue_is_empty (input))
     {
-      Error_throw_printf (
-          "Unexpected end of input (expected if block) on line %d\n,",
-          source_line);
+      Error_throw_printf ( "Unexpected end of input (expected if block) on line %d\n,", source_line);
     }
   ASTNode *condition;
   ASTNode *if_block;
@@ -733,8 +675,7 @@ parse_conditional (TokenQueue *input)
   match_and_discard_next_token (input, SYM, ")");
   if (!check_next_token (input, SYM, "{"))
     {
-      Error_throw_printf ("Invalid end of conditional node on line %d",
-                          source_line);
+      Error_throw_printf ("Invalid end of conditional node on line %d", source_line);
     }
   if_block = parse_block (input);
   if (check_next_token (input, KEY, "else"))
@@ -758,8 +699,7 @@ parse_conditional (TokenQueue *input)
  * @param input Token queue to modify
  * @returns The parsed AST node for the statement.
  */
-ASTNode *
-parse_statement (TokenQueue *input)
+ASTNode* parse_statement (TokenQueue *input)
 {
   // retain and use get_next_token_line for error handling if needed
   if (check_next_token (input, KEY, "continue"))
@@ -800,8 +740,7 @@ parse_statement (TokenQueue *input)
     }
   else
     {
-      Error_throw_printf ("Unexpected statement on line %d",
-                          get_next_token_line (input));
+      Error_throw_printf ("Unexpected statement on line %d", get_next_token_line (input));
     }
   return NULL;
 }
@@ -813,8 +752,7 @@ parse_statement (TokenQueue *input)
 // TODO:
 // 1. ensure varDecl appear BEFORE all statements
 // 2. allow multiple "things" in a block
-ASTNode *
-parse_block (TokenQueue *input)
+ASTNode* parse_block (TokenQueue *input)
 {
   if (TokenQueue_is_empty (input))
     {
@@ -834,8 +772,7 @@ parse_block (TokenQueue *input)
   match_and_discard_next_token (input, SYM, "{");
 
   // parse variable declarations first
-  while (check_next_token (input, KEY, "int")
-         || check_next_token (input, KEY, "bool"))
+  while (check_next_token (input, KEY, "int") || check_next_token (input, KEY, "bool"))
     {
       NodeList_add (vars, parse_vardecl (input));
     }
@@ -855,13 +792,11 @@ parse_block (TokenQueue *input)
 /**
  * @brief Parse and return a FuncDecl
  */
-ASTNode *
-parse_funcdecl (TokenQueue *input)
+ASTNode* parse_funcdecl (TokenQueue *input)
 {
   if (TokenQueue_is_empty (input))
     {
-      Error_throw_printf (
-          "Unexpected end of input (expected function declaration)\n");
+      Error_throw_printf ("Unexpected end of input (expected function declaration)\n");
     }
 
   int source_line = get_next_token_line (input);
@@ -892,9 +827,7 @@ parse_funcdecl (TokenQueue *input)
 /*
  * node-level parsing functions
  */
-ASTNode *
-parse_program (TokenQueue *input)
-{
+ASTNode* parse_program (TokenQueue *input) {
   NodeList *vars = NodeList_new ();
   NodeList *funcs = NodeList_new ();
 
@@ -903,26 +836,21 @@ parse_program (TokenQueue *input)
       Error_throw_printf ("The input can't be null");
     }
 
-  // P2 Lab
-  while (!TokenQueue_is_empty (input))
+  while (!TokenQueue_is_empty(input))
     {
       // peek at next token to determine if adding to 'vars' or 'funcs'
-      if (check_next_token (input, KEY, "def"))
-        {
+      if (check_next_token (input, KEY, "def")) {
           NodeList_add (funcs, parse_funcdecl (input));
-        }
-      else
-        {
-          NodeList_add (
-              vars, parse_vardecl (input)); // construct a variable declaration
-        }
+      } 
+      else {
+        NodeList_add (vars, parse_vardecl (input)); // construct a variable declaration
+      }
     }
 
   return ProgramNode_new (vars, funcs);
 }
 
-ASTNode *
-parse (TokenQueue *input)
+ASTNode* parse (TokenQueue *input)
 {
   return parse_program (input);
 }

@@ -49,15 +49,13 @@ int get_next_token_line(TokenQueue *input) {
  * @param type Expected type of next token
  * @param text Expected text of next token
  */
-void match_and_discard_next_token(TokenQueue *input, TokenType type,
-                                  const char *text) {
+void match_and_discard_next_token(TokenQueue *input, TokenType type, const char *text) {
   if (TokenQueue_is_empty(input)) {
     Error_throw_printf("Unexpected end of input (expected \'%s\')\n", text);
   }
   Token *token = TokenQueue_remove(input);
   if (token->type != type || !token_str_eq(token->text, text)) {
-    Error_throw_printf("Expected \'%s\' but found '%s' on line %d\n", text,
-                       token->text, get_next_token_line(input));
+    Error_throw_printf("Expected \'%s\' but found '%s' on line %d\n", text, token->text, get_next_token_line(input));
   }
   Token_free(token);
 }
@@ -120,8 +118,7 @@ DecafType parse_type(TokenQueue *input) {
   }
   Token *token = TokenQueue_remove(input);
   if (token->type != KEY) {
-    Error_throw_printf("Invalid type '%s' on line %d\n", token->text,
-                       get_next_token_line(input));
+    Error_throw_printf("Invalid type '%s' on line %d\n", token->text, get_next_token_line(input));
   }
   DecafType t = VOID;
   if (token_str_eq("int", token->text)) {
@@ -131,8 +128,7 @@ DecafType parse_type(TokenQueue *input) {
   } else if (token_str_eq("void", token->text)) {
     t = VOID;
   } else {
-    Error_throw_printf("Invalid type '%s' on line %d\n", token->text,
-                       get_next_token_line(input));
+    Error_throw_printf("Invalid type '%s' on line %d\n", token->text, get_next_token_line(input));
   }
   Token_free(token);
   return t;
@@ -151,8 +147,7 @@ void parse_id(TokenQueue *input, char *buffer) {
   }
   Token *token = TokenQueue_remove(input);
   if (token->type != ID) {
-    Error_throw_printf("Invalid ID '%s' on line %d\n", token->text,
-                       get_next_token_line(input));
+    Error_throw_printf("Invalid ID '%s' on line %d\n", token->text, get_next_token_line(input));
   }
   snprintf(buffer, MAX_ID_LEN, "%s", token->text);
   Token_free(token);
